@@ -23,6 +23,11 @@
 #   define PLOG_GET_FUNC()      __PRETTY_FUNCTION__
 #endif
 
+// __FILE_NAME__ may not be defined in some compilers, or show up as a error in some IDEs
+#ifndef __FILE_NAME__
+#define __FILE_NAME__ __FILE__
+#endif
+
 #ifdef PLOG_CAPTURE_FILE
 #   define PLOG_GET_FILE()      __FILE__
 #   define PLOG_GET_FILENAME() __FILE_NAME__
