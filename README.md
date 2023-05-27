@@ -590,6 +590,7 @@ public:
 - thread id
 - 'this' pointer (if a log message is written from within an object)
 - source line
+- source file name and path
 - source file name
 - function name
 - message

@@ -257,8 +257,8 @@ namespace plog
     class Record
     {
     public:
-        Record(Severity severity, const char* func, size_t line, const char* file, const void* object, int instanceId)
-            : m_severity(severity), m_tid(util::gettid()), m_object(object), m_line(line), m_func(func), m_file(file), m_instanceId(instanceId)
+        Record(Severity severity, const char *func, size_t line, const char *file, const char *filename, const void *object, int instanceId)
+            : m_severity(severity), m_tid(util::gettid()), m_object(object), m_line(line), m_func(func), m_file(file), m_filename(filename), m_instanceId(instanceId)
         {
             util::ftime(&m_time);
         }
@@ -410,6 +410,11 @@ namespace plog
             return m_file;
         }
 
+        virtual const char *getFilename() const
+        {
+            return m_filename;
+        }
+
         virtual ~Record() // virtual destructor to satisfy -Wnon-virtual-dtor warning
         {
         }
@@ -428,6 +433,7 @@ namespace plog
         util::nostringstream    m_message;
         const char* const       m_func;
         const char* const       m_file;
+        const char* const       m_filename;
         const int               m_instanceId;
         mutable std::string     m_funcStr;
         mutable util::nstring   m_messageStr;

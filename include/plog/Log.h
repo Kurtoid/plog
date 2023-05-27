@@ -25,8 +25,10 @@
 
 #ifdef PLOG_CAPTURE_FILE
 #   define PLOG_GET_FILE()      __FILE__
+#   define PLOG_GET_FILENAME() __FILE_NAME__
 #else
-#   define PLOG_GET_FILE()      ""
+    #define PLOG_GET_FILE() ""
+    #define PLOG_GET_FILENAME() ""
 #endif
 
 //////////////////////////////////////////////////////////////////////////
@@ -47,7 +49,7 @@
 //////////////////////////////////////////////////////////////////////////
 // Main logging macros
 
-#define PLOG_(instanceId, severity)      IF_PLOG_(instanceId, severity) (*plog::get<instanceId>()) += plog::Record(severity, PLOG_GET_FUNC(), __LINE__, PLOG_GET_FILE(), PLOG_GET_THIS(), instanceId).ref()
+#define PLOG_(instanceId, severity)      IF_PLOG_(instanceId, severity)(*plog::get<instanceId>()) += plog::Record(severity, PLOG_GET_FUNC(), __LINE__, PLOG_GET_FILE(), PLOG_GET_FILENAME(), PLOG_GET_THIS(), instanceId).ref()
 #define PLOG(severity)                   PLOG_(PLOG_DEFAULT_INSTANCE_ID, severity)
 
 #define PLOG_VERBOSE                     PLOG(plog::verbose)
@@ -127,7 +129,7 @@
 //////////////////////////////////////////////////////////////////////////
 // Main logging macros - can be changed later to point at macros for a different logging package
 
-#define LOG_(instanceId, severity)      IF_PLOG_(instanceId, severity) (*plog::get<instanceId>()) += plog::Record(severity, PLOG_GET_FUNC(), __LINE__, PLOG_GET_FILE(), PLOG_GET_THIS(), instanceId).ref()
+#define LOG_(instanceId, severity)      IF_PLOG_(instanceId, severity)(*plog::get<instanceId>()) += plog::Record(severity, PLOG_GET_FUNC(), __LINE__, PLOG_GET_FILE(), PLOG_GET_FILENAME(), PLOG_GET_THIS(), instanceId).ref()
 #define LOG(severity)                   PLOG_(PLOG_DEFAULT_INSTANCE_ID, severity)
 
 #define LOG_VERBOSE                     PLOG(plog::verbose)
