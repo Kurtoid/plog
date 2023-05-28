@@ -7,6 +7,9 @@
 #include <vcclr.h>  // For PtrToStringChars
 #endif
 
+// define this so we can tell if we have a getFilename() method or not
+#define PLOG_HAVE_FILENAME
+
 namespace plog
 {
     namespace detail
