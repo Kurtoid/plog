@@ -31,9 +31,12 @@
 #ifdef PLOG_CAPTURE_FILE
 #   define PLOG_GET_FILE()      __FILE__
 #   define PLOG_GET_FILENAME() __FILE_NAME__
+// define this so we can tell if we have a getFilename() method or not
+#   define PLOG_HAVE_FILENAME  1
 #else
-    #define PLOG_GET_FILE() ""
-    #define PLOG_GET_FILENAME() ""
+#   define PLOG_GET_FILE()     ""
+#   define PLOG_GET_FILENAME() ""
+#   define PLOG_HAVE_FILENAME  0
 #endif
 
 //////////////////////////////////////////////////////////////////////////
